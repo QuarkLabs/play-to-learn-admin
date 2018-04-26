@@ -1,3 +1,16 @@
-<p>
-  questions works!
-</p>
+<mat-card class="editor">
+  <!-- Editor area -->
+  <div>
+    <mat-form-field>
+      <textarea matInput class="text-editor" name="ttsText" [(ngModel)]="csvText" placeholder="Type your text here"></textarea>
+    </mat-form-field>
+  </div>
+  
+
+  <div class="bottom-panel">
+      <button mat-button color="primary" (click)="onClickAddQuestionsButton()">Add Questions</button>
+  </div>
+
+
+</mat-card>
+

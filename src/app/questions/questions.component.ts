@@ -7,7 +7,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class QuestionsComponent implements OnInit {
 
+  public csvText: '';
+
   constructor() { }
+
+  // Add Questions
+  onClickAddQuestionsButton(){
+
+  }
 
   ngOnInit() {
   }
