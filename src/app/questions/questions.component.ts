@@ -13,9 +13,20 @@ export class QuestionsComponent implements OnInit {
 
   constructor(private firebaseService: FirebaseService) { }
 
-  // Add Questions
   onClickAddQuestionsButton(){
+    this.addQuestion(1, {
+      name: 'Sumedhe',
+      admin: true,
+      count: 1
+    });
+  }
 
+  // Add Questions
+  addQuestion(level, question){
+    var ref = this.firebaseService.getDatabase().ref('levels');
+    var questionRef = ref.child(level).child('questions')
+
+    questionRef.push(question);
   }
 
   ngOnInit() {

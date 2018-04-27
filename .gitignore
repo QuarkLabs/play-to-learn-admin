@@ -43,4 +43,4 @@ testem.log
 Thumbs.db
 
 # Custom
-/config/serviceAccountKey.json
+/src/config/serviceAccountKey.json
