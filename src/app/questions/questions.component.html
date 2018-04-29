@@ -1,54 +1,65 @@
-
 <h3> {{ title }} </h3>
+<mat-divider></mat-divider> <br>
 
 <mat-card-content clas="content">
-      <mat-accordion>
-          <mat-expansion-panel *ngFor="let question of questions | async">
-              
-              <!-- Header -->
-              <mat-expansion-panel-header>
-                <mat-panel-title> {{ question.title }} </mat-panel-title>
-                <mat-panel-description> {{ question.description }} </mat-panel-description>
-              </mat-expansion-panel-header>
-          
-              <!-- Title -->
-              <mat-form-field>
-                <input matInput #titleInput placeholder="Title" [value]="question.title">
-              </mat-form-field>
-          
-              <!-- Description -->
-              <mat-form-field>
-                  <textarea matInput #descriptionInput placeholder="Description" [value]="question.description"></textarea>  
-              </mat-form-field>
-    
-              <section class="section">
-                  <!-- Answer -->
-                  <mat-form-field class="number-input">
-                    <input matInput #answerInput type="number" placeholder="Answer" [(ngModel)]="question.answer">
-                  </mat-form-field>
-                  <!-- Correct Poins -->
-                  <mat-form-field class="number-input">
-                    <input matInput #correctPointsInput type="number" placeholder="Correct Points" [(ngModel)]="question.correctPoints">
-                  </mat-form-field>
-                  <!-- Wrong Points -->
-                  <mat-form-field class="number-input">
-                    <input matInput #wrongPointsInput type="number" placeholder="Wrong Points" [(ngModel)]="question.wrongPoints">
-                  </mat-form-field>
-              </section>
 
-              <!-- Buttons -->
-              <button mat-button color="primary" (click)="updateItem(question.key,  titleInput.value, descriptionInput.value, answerInput.value, correctPointsInput.value, wrongPointsInput.value)">Update</button>
-              <button mat-button color="primary" (click)="deleteItem(question.key)">Delete</button>
-    
-          </mat-expansion-panel>
+  <!-- Level Selector -->
+  <mat-form-field class="select">
+    <mat-select placeholder="Level" [(ngModel)]="level">
+      <mat-option *ngFor="let level of levels" [value]="level" (click)="mapQuestions()">
+        {{ level }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
 
-        </mat-accordion> <br>
+  <!-- Question List -->
+  <mat-accordion>
+    <mat-expansion-panel *ngFor="let question of questions | async">
 
-        <!-- Add new question button -->
-        <div class="bottom-panel">
-            <button mat-button color="primary" (click)="addItem()">Add New Question</button>
-        </div>
-      
+      <!-- Header -->
+      <mat-expansion-panel-header>
+        <mat-panel-title> {{ question.title }} </mat-panel-title>
+        <mat-panel-description> {{ question.description }} </mat-panel-description>
+      </mat-expansion-panel-header>
 
-  </mat-card-content>
+      <!-- Title -->
+      <mat-form-field>
+        <input matInput #titleInput placeholder="Title" [value]="question.title">
+      </mat-form-field>
 
+      <!-- Description -->
+      <mat-form-field>
+        <textarea matInput #descriptionInput placeholder="Description" [value]="question.description"></textarea>
+      </mat-form-field>
+
+      <section class="section">
+        <!-- Answer -->
+        <mat-form-field class="number-input">
+          <input matInput #answerInput type="number" placeholder="Answer" [(ngModel)]="question.answer">
+        </mat-form-field>
+        <!-- Correct Poins -->
+        <mat-form-field class="number-input">
+          <input matInput #correctPointsInput type="number" placeholder="Correct Points" [(ngModel)]="question.correctPoints">
+        </mat-form-field>
+        <!-- Wrong Points -->
+        <mat-form-field class="number-input">
+          <input matInput #wrongPointsInput type="number" placeholder="Wrong Points" [(ngModel)]="question.wrongPoints">
+        </mat-form-field>
+      </section>
+
+      <!-- Buttons -->
+      <button mat-button color="primary" (click)="updateItem(question.key,  titleInput.value, descriptionInput.value, answerInput.value, correctPointsInput.value, wrongPointsInput.value)">Update</button>
+      <button mat-button color="primary" (click)="deleteItem(question.key)">Delete</button>
+
+    </mat-expansion-panel>
+
+  </mat-accordion>
+  <br>
+
+  <!-- Add new question button -->
+  <div class="bottom-panel">
+    <button mat-button color="primary" (click)="addItem()">Add New Question</button>
+  </div>
+
+
+</mat-card-content>

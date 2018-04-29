@@ -12,12 +12,27 @@ import 'rxjs/add/operator/map';
 export class QuestionsComponent implements OnInit {
   title: string;
   level: string;
+  levels: string[];
   questions: Observable<any[]>;
 
   constructor(private db: AngularFireDatabase) {
     this.level = "1"; // Default
+    this.levels = [];
     this.title = "Questions";
 
+    // Load questions
+    this.mapQuestions();
+
+    this.db.list('levels').snapshotChanges(['child_added'])
+    .subscribe(actions => {
+      actions.forEach(action => {
+        this.levels.push(action.key);
+        console.log(action.key);
+      });
+    });
+  }
+
+  mapQuestions(){
     // Use snapshotChanges().map() to store the key
     this.questions = this.getQuestionList().snapshotChanges().map(changes => {
       return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));

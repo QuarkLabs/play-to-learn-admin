@@ -12,14 +12,14 @@ import { MatButtonModule, MatCheckboxModule, MatCheckboxChange } from '@angular/
 import { MatInputModule } from '@angular/material/input';
 import { MatCardModule } from '@angular/material/card';
 import { MatExpansionModule } from '@angular/material/expansion';
-import {MatDividerModule} from '@angular/material/divider';
-
+import { MatDividerModule } from '@angular/material/divider';
+import { MatSelectModule } from '@angular/material/select';
+import { MatSidenavModule } from '@angular/material/sidenav';
 
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { environment } from '../environments/environment';
 
-import {MatSidenavModule} from '@angular/material/sidenav';
 
 
 
@@ -39,6 +39,7 @@ import {MatSidenavModule} from '@angular/material/sidenav';
     MatCardModule,
     MatExpansionModule,
     MatDividerModule,
+    MatSelectModule,
     MatSidenavModule,
 
     AngularFireModule.initializeApp(environment.firebase),
