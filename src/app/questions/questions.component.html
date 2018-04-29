@@ -6,11 +6,12 @@
   <!-- Level Selector -->
   <mat-form-field class="select">
     <mat-select placeholder="Level" [(ngModel)]="level">
-      <mat-option *ngFor="let level of levels" [value]="level" (click)="mapQuestions()">
+      <mat-option *ngFor="let level of levels" [value]="level" (click)="loadQuestions()">
         {{ level }}
       </mat-option>
     </mat-select>
   </mat-form-field>
+  <button mat-button color="primary" (click)="addNewLevel()">Add New Level</button>
 
   <!-- Question List -->
   <mat-accordion>
