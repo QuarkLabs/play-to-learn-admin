@@ -1,10 +1,18 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    {{ title }}
-  </h1>
-</div>
 
-<app-questions></app-questions>
+
+<mat-drawer-container class="drawer-container" fullscreen>
+    <!-- Sidebar -->
+    <mat-drawer class="drawer-sidebar" mode="side" opened="true">
+      <h2>Play To Learn</h2>
+      <h3>Administraion Panel</h3>
+    </mat-drawer>
+
+    <!-- Content -->
+    <mat-drawer-content class="drawer-content">
+      <app-questions></app-questions>
+    </mat-drawer-content>
+  </mat-drawer-container>
+
 
 <router-outlet></router-outlet>

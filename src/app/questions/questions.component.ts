@@ -1,33 +1,62 @@
 import { Component, OnInit } from '@angular/core';
-import { FirebaseService } from '../services/firebase.service';
+import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/map';
 
 @Component({
   selector: 'app-questions',
   templateUrl: './questions.component.html',
   styleUrls: ['./questions.component.scss'],
-  providers: [FirebaseService]
+  providers: []
 })
 export class QuestionsComponent implements OnInit {
+  title: string;
+  level: string;
+  questions: Observable<any[]>;
 
-  public csvText: '';
+  constructor(private db: AngularFireDatabase) {
+    this.level = "1"; // Default
+    this.title = "Questions";
 
-  constructor(private firebaseService: FirebaseService) { }
-
-  onClickAddQuestionsButton(){
-    this.addQuestion(1, {
-      name: 'Sumedhe',
-      admin: true,
-      count: 1
+    // Use snapshotChanges().map() to store the key
+    this.questions = this.getQuestionList().snapshotChanges().map(changes => {
+      return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
     });
   }
 
-  // Add Questions
-  addQuestion(level, question){
-    var ref = this.firebaseService.getDatabase().ref('levels');
-    var questionRef = ref.child(level).child('questions')
-
-    questionRef.push(question);
+  addItem() {
+    this.getQuestionList().push({
+      title: "New Question",
+      description: "",
+      answer: "0",
+      correctPoints: "10",
+      wrongPoints: "-5"
+    });
   }
+
+  updateItem(key: string, title: string, description: string, answer: string, correctPoints: string, wrongPoints: string) {
+    this.getQuestionList().update(key, {
+      title: title,
+      description: description,
+      answer: answer,
+      correctPoints: correctPoints,
+      wrongPoints: wrongPoints
+    });
+  }
+
+  deleteItem(key: string) {    
+    this.getQuestionList().remove(key); 
+  }
+  
+  deleteEverything() {
+    this.getQuestionList().remove();
+  }
+
+  
+  getQuestionList(){
+    return this.db.list('levels/' + this.level + '/questions');
+  }
+
 
   ngOnInit() {
   }

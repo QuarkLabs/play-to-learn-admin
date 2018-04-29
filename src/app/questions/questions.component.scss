@@ -1,9 +1,24 @@
 textarea {
     min-width: 60%;
-    height: 400px;
+    height: 100px;
 }
 
 mat-form-field {
     width: 100%;
     align-content: center;
+}
+
+.section {
+    display: flex;
+    align-content: center;
+    align-items: center;
+    height: 60px;
+  }
+
+.number-input {
+    margin: 10px;
+}
+
+.content {
+    padding: 10px;
 }
