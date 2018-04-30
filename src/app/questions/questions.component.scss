@@ -20,9 +20,36 @@ mat-form-field {
 }
 
 .content {
-    padding: 10px;
+    width: 80%;
+    margin: auto;
+    margin-top: 10px;
+    // background-color: #F5F5F5;
 }
 
 .select {
     width: 150px;
+}
+
+.title {
+    font-size: 22px;
+    font-weight: bold;
+    height: 50px;
+    color: whitesmoke;
+    display: table-cell;
+    width: 100%;
+    vertical-align: middle;
+}
+
+.title-bg {
+    background-color: #039BE5;
+    padding: 10px;
+    padding-left: 20px;
+}
+
+mat-expansion-panel{
+    background-color: #F5F5F5;
+}
+
+mat-expansion-panel-header{
+    background-color: white;
 }
