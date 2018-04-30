@@ -14,6 +14,7 @@ export class QuestionsComponent implements OnInit {
   level: string;
   levels: string[];
   questions: Observable<any[]>;
+  a: number[];
 
   constructor(private db: AngularFireDatabase) {
     this.level = "1"; // Default
@@ -30,6 +31,8 @@ export class QuestionsComponent implements OnInit {
         if (this.levels.indexOf(action.key) == -1){
           this.levels.push(action.key);
         }
+        // Save Level Count
+        this.db.object('level_info/count').set(Math.max(...this.levels.map(Number)));
       });
     });
   }
@@ -79,11 +82,9 @@ export class QuestionsComponent implements OnInit {
   }
 
   addNewLevel(){
-    var newNum: number;
-    if (this.levels.length == 0){
-      newNum = 1;
-    } else {
-      var newNum = parseInt(this.levels[this.levels.length - 1]) + 1;
+    var newNum = 1;
+    while (this.levels.indexOf(newNum.toString()) > -1){
+      newNum++;
     }
     this.levels.push(newNum.toString());
     this.level = newNum.toString();
