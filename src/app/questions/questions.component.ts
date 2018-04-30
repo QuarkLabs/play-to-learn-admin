@@ -62,9 +62,9 @@ export class QuestionsComponent implements OnInit {
     this.getQuestionList().update(key, {
       title: title,
       description: description,
-      answer: answer,
-      correctPoints: correctPoints,
-      wrongPoints: wrongPoints
+      answer: parseInt(answer),
+      correctPoints: parseInt(correctPoints),
+      wrongPoints: parseInt(wrongPoints)
     });
   }
 
